@@ -37,7 +37,6 @@ def create_app(test_config=None):
         return render_template('uniforme.html')
     
     @app.route('/upload_image', methods=['GET', 'POST'])
-    @app.route('/upload_image', methods=['GET', 'POST'])
     def upload_image():
         if not session.get('logged_in'):
             return redirect(url_for('login'))
@@ -58,7 +57,7 @@ def create_app(test_config=None):
             result = c.fetchone()
             if result is None:
                 return render_template('upload_image_with_title.html')
-        return render_template('upload_image.html')
+        return render_template('upload_image_with_title.html')
 
 
     @app.route('/login', methods=['GET', 'POST'])
