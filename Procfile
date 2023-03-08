@@ -1,1 +1,1 @@
-web: gunicorn bsl:__init__.py
+web: /Library/Frameworks/Python.framework/Versions/3.10/bin/gunicorn bsl:__init__.py
