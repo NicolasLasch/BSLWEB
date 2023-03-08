@@ -1,6 +1,5 @@
 import os
 from flask import Flask,render_template, request, session, redirect, url_for, flash, Response, send_file
-from jinja2 import Environment
 from io import BytesIO
 from PIL import Image
 
@@ -57,7 +56,6 @@ def create_app(test_config=None):
             result = c.fetchone()
             if result is None:
                 return render_template('upload_image_with_title.html')
-        return render_template('upload_image_with_title.html')
 
 
     @app.route('/login', methods=['GET', 'POST'])
