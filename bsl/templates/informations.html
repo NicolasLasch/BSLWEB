@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<br>
+<br>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='info.css')}}">
+<h1> Ephémérides BSL 2022-2023 </h1>
+<div id="countdown"></div>
+<iframe src="{{url_for('static',filename='pdf/EphÃ©mÃ©rides BSL 2022-2023.pdf')}}#toolbar=0&navpanes=0" type="application/pdf"></iframe>
+
+<script>
+// Set the date of Sunday, July 23, 2023
+var countDownDate = new Date("Jul 23, 2023 00:00:00").getTime();
+
+// Update the countdown every second
+var x = setInterval(function() {
+
+  // Get the current date and time
+  var now = new Date().getTime();
+
+  // Calculate the time remaining
+  var timeRemaining = countDownDate - now;
+
+  // Calculate days, hours, minutes and seconds remaining
+  var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+  // Display the countdown in a div element
+  document.getElementById("countdown").innerHTML = days + "j " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the countdown is finished, display a message
+  if (timeRemaining < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+
+{% endblock %}

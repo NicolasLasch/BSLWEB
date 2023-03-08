@@ -1,0 +1,17 @@
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='base.css')}}">
+    <div class="container">
+      <header>
+        <nav>
+          <ul class="left">
+            <li><a href="/staff">Le Staff</a></li>
+            <li><a href="/informations">Ephémérides</a></li>
+          </ul>
+          <a href="/"><img src="{{url_for('static',filename='images/logo.png')}}" alt="Logo"></a>
+          <ul class="right">
+            <li><a href="/medias">Médias</a></li>
+            <li><a href="/uniforme">Uniforme</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+{% block content %}{% endblock %}

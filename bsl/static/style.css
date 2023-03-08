@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+body {
+font-family: 'Poppins', sans-serif;
+margin: 0;
+padding: 0;
+background-image: url("images/background.jpg");
+background-size: cover;
+background-position: center center;
+background-attachment: fixed;
+}
+
+.container {
+display: flex;
+flex-direction: column;
+height: 100vh;
+}
+
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-left: 20px;
+padding-right: 20px; /* ajouter un padding à droite */
+padding-top: 20px;
+}
+
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-left: 20px;
+padding-right: 20px;
+width: 100%;
+padding-bottom: 25vw;
+}
+
+nav ul.left {
+font-weight: 600;
+font-size: 13px;
+display: flex;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+nav ul.right {
+font-weight: 600;
+font-size: 13px;
+display: flex;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+nav li {
+margin-right: 5vw;
+margin-left: 5vw;
+}
+
+nav a {
+text-decoration: none;
+color: #fff;
+}
+
+nav a:hover {
+text-decoration: none;
+color: #000;
+}
+
+nav img {
+width: 15vw;
+}
+
+h1 {
+    font-size: calc(30px + (70 - 30) * ((100vw - 320px) / (1200 - 320)));
+    font-weight: bold;
+    margin-top: -13.5vw;
+    text-align: center;
+    }
+    
+h2 {
+font-size: calc(13px + (18 - 13) * ((100vw - 320px) / (1200 - 320)));
+font-weight: 400;
+margin-bottom: 0;
+letter-spacing: 8px;
+word-spacing: 10px;
+text-align: center;
+opacity: .8;
+margin-top: -0.5vw;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BSL - ACCUEIL</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <ul class="left">
+            <li><a href="/staff">Le Staff</a></li>
+            <li><a href="/informations">Ephémérides</a></li>
+          </ul>
+          <a href="/"><img src="{{url_for('static',filename='images/logo.png')}}" alt="Logo"></a>
+          <ul class="right">
+            <li><a href="/medias">Médias</a></li>
+            <li><a href="/uniforme">Uniforme</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <h1>BSL</h1>
+        <h2>Unité Saint Germain</h2>
+      </main>
+    </div>
+  </body>
+</html>

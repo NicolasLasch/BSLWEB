@@ -1,0 +1,42 @@
+.staff-member {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+  margin-left: 5%;
+  width: 80%;
+  background-color: rgba(24, 24, 24, 0.35);
+  color: white;
+  padding:  5%;
+  cursor: pointer; 
+}
+
+.staff-member img {
+  width: 18vw;
+  height: 18vw;
+  margin-right: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.staff-member-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+}
+
+.staff-member-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.staff-member-info p {
+  font-size: 16px;
+  line-height: 1;
+}
+
+h1 {
+  font-size: calc(30px + (70 - 30) * ((80vw - 320px) / (1200 - 320)));
+  font-weight: bold;
+  text-align: center;
+  }

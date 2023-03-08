@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='media.css')}}">
+<div class="gallery-full"> 
+    <h1 style="text-align:center;">Galerie des photos</h1>
+    <div class="gallery-container">
+    <div class="gallery-box">
+    {% for image in images %}
+        <div class="gallery-item">
+            <a href="/show_images/{{ image['id'] }}">
+                <img src="{{ url_for('serve_image', id=image['id'], image_index=0) }}" alt="Image" style="min-width: 200px; min-height: 200px; max-width: 100%; max-height: 100%;">
+                {% if image['title'] is not none %}
+                <p class="gallery-text">{{ image['title'][0] }}</p>
+                {% endif %}
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+    </div>
+</div>
+{% endblock %}

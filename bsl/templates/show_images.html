@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='show_img.css')}}">
+<div class="gallery-full"> 
+    <h1 style="text-align:center;">{{ title[0] }}</h1>
+    <div class="gallery-container">
+    <div class="gallery-box">
+    {% for i, image in enumerate(images) %}
+        <a href="{{ url_for('serve_image', id=id, image_index=i) }}" class="image-link"><img src="{{ url_for('serve_image', id=id, image_index=i) }}" alt="Image" style="max-width: 100%; max-height: 100%;"></a>
+    {% endfor %}
+    </div>
+    </div>
+</div>
+<script>
+  let currentIndex = 0;
+  const images = document.querySelectorAll('.image-link');
+  const maxIndex = images.length - 1;
+
+  function showImage(index) {
+    images[index].click();
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'ArrowLeft') {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = maxIndex;
+      }
+      showImage(currentIndex);
+    }
+    if (event.code === 'ArrowRight') {
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+      }
+      showImage(currentIndex);
+    }
+  });
+</script>
+{% endblock %}
