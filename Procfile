@@ -1,1 +1,1 @@
-web: gunicorn bsl:__init__.py
+web: gunicorn wsgi:bsl
