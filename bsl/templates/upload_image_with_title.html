@@ -3,6 +3,7 @@
 <br>
 <br>
 <br>
+<h2 style="text-align:center;">Ajouter des images</h2>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='upload.css') }}">
 <form method="POST" action="{{ url_for('upload_image') }}" enctype="multipart/form-data">
     <input type="text" name="id" placeholder="Entrez une ID (Les albums sont classés de 1 à ...)" required>
@@ -10,5 +11,17 @@
     <input type="file" name="image" accept="image/jpeg" multiple required>
     <button type="submit">Envoyer</button>
 </form>
-{% endblock %}
 
+{% if images %}
+<h2 style="text-align:center;">Supprimer des images</h2>
+<form method="POST" action="{{ url_for('delete_image') }}">
+  <select name="id">
+    {% for image in images %}
+      <option value="{{ image[0] }}">{{ image[0] }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Supprimer</button>
+</form>
+{% endif %}
+
+{% endblock %}

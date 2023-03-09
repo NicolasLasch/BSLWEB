@@ -35,6 +35,45 @@ def create_app(test_config=None):
     def uniforme():
         return render_template('uniforme.html')
     
+    @app.route('/new_post', methods=['GET', 'POST'])
+    def new_post():
+        if not session.get('logged_in'):
+            return redirect(url_for('login'))
+        conn = get_db()
+        c = conn.cursor()
+        if request.method == 'POST':
+            title = request.form['title']
+            text = request.form['text']
+            
+            conn.execute("INSERT INTO forum (title, text) VALUES (?, ?)", (title, text))
+            conn.commit()
+            
+            return redirect(url_for('posts'))
+        
+        return render_template('new_post.html')
+
+    @app.route('/posts')
+    def posts():
+        if not session.get('logged_in'):
+            return redirect(url_for('login'))
+        
+        conn = get_db()
+        cursor = conn.execute("SELECT * FROM forum")
+        posts = cursor.fetchall()
+        
+        return render_template('posts.html', posts=posts)
+
+    @app.route('/delete_post/<int:post_id>', methods=['POST', 'DELETE'])
+    def delete_post(post_id):
+        if not session.get('logged_in'):
+            return redirect(url_for('login'))
+        
+        conn = get_db()
+        conn.execute("DELETE FROM forum WHERE id=?", (post_id,))
+        conn.commit()
+    
+        return redirect(url_for('posts'))
+
     @app.route('/upload_image', methods=['GET', 'POST'])
     def upload_image():
         if not session.get('logged_in'):
@@ -51,11 +90,30 @@ def create_app(test_config=None):
             conn.commit()
             return redirect(url_for('upload_image'))
         elif request.method == 'GET':
+            c.execute("SELECT DISTINCT id FROM images")
+            images = c.fetchall()
             id = request.args.get('id')
-            c.execute("SELECT id FROM images WHERE id = ?", (id,))
-            result = c.fetchone()
-            if result is None:
-                return render_template('upload_image_with_title.html')
+            if id:
+                # Delete the image(s) with the given ID
+                c.execute("DELETE FROM images WHERE id = ?", (id,))
+                # Update the IDs of all images with a greater ID than the deleted ID
+                c.execute("UPDATE images SET id = id - 1 WHERE id > ?", (id,))
+                conn.commit()
+            return render_template('upload_image_with_title.html', images=images)
+
+    @app.route('/delete_image', methods=['POST'])
+    def delete_image():
+        if not session.get('logged_in'):
+            return redirect(url_for('login'))
+        
+        conn = get_db()
+        c = conn.cursor()
+        id = request.form['id']
+        c.execute("DELETE FROM images WHERE id = ?", (id,))
+        c.execute("UPDATE images SET id = id - 1 WHERE id > ?", (id,))
+        conn.commit()
+        return redirect(url_for('upload_image'))
+
 
 
     @app.route('/login', methods=['GET', 'POST'])
