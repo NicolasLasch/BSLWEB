@@ -76,15 +76,16 @@ h1 {
     font-weight: bold;
     margin-top: -13.5vw;
     text-align: center;
+    color: #fff;
     }
     
 h2 {
 font-size: calc(13px + (18 - 13) * ((100vw - 320px) / (1200 - 320)));
-font-weight: 400;
+font-weight: 500;
 margin-bottom: 0;
 letter-spacing: 8px;
 word-spacing: 10px;
 text-align: center;
-opacity: .8;
 margin-top: -0.5vw;
+color: #fff;
 }
